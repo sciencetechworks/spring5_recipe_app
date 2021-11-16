@@ -7,6 +7,8 @@ package com.stw.spring5_recipe_app.domain;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +34,9 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-    //todo add
-    //private Difficulty difficulty;
+ 
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
     
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
@@ -165,13 +168,6 @@ public class Recipe {
     }
 
     /**
-     * @param image the image to set
-     */
-    public void setImage(Byte[] image) {
-        this.image = image;
-    }
-
-    /**
      * @return the notes
      */
     public Notes getNotes() {
@@ -197,6 +193,27 @@ public class Recipe {
      */
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    /**
+     * @return the difficulty
+     */
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    /**
+     * @param difficulty the difficulty to set
+     */
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 
     
