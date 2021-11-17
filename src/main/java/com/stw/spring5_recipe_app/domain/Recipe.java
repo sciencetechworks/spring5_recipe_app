@@ -59,10 +59,16 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name= "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public void addIngredient(Ingredient ingredient){
-        ingredients.add(ingredient);
+    public Recipe() {
     }
-    
+
+  
+     public Recipe addIngredient(Ingredient ingredient)
+    {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
     /**
      * @return the id
      */
@@ -193,6 +199,7 @@ public class Recipe {
      */
     public void setNotes(Notes notes) {
         this.notes = notes;
+        notes.setRecipe(this);
     }
 
     /**
@@ -244,6 +251,7 @@ public class Recipe {
         this.categories = categories;
     }
 
+   
     
     
 }
