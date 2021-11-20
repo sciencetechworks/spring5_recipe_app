@@ -10,11 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Usuario
  */
+@Data
+@EqualsAndHashCode(exclude={"recipe"})
+@NoArgsConstructor
 @Entity
 public class Notes {
     @Id
@@ -27,56 +33,9 @@ public class Notes {
     @Lob
     private String recipeNotes;
 
-    public Notes() {
-    }
-
-    
+  
     public Notes(Recipe recipe) {
         this.recipe = recipe;
     }
-
-    
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the recipe
-     */
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    /**
-     * @param recipe the recipe to set
-     */
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    /**
-     * @return the recipeNotes
-     */
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    /**
-     * @param recipeNotes the recipeNotes to set
-     */
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
-    }
-    
     
 }

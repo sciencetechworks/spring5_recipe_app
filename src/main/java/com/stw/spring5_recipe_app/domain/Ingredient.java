@@ -12,11 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author Usuario
  */
+@Data
+@EqualsAndHashCode(exclude={"recipe"})
 @Entity
 public class Ingredient {
   
@@ -42,77 +46,4 @@ public class Ingredient {
         this.uom = uom;
         this.recipe=recipe;
     }
-
-    
-    /**
-     * @return the Id
-     */
-    public Long getId() {
-        return Id;
-    }
-
-    /**
-     * @param Id the Id to set
-     */
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * @return the amount
-     */
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    /**
-     * @param amount the amount to set
-     */
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    /**
-     * @return the recipe
-     */
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    /**
-     * @param recipe the recipe to set
-     */
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    /**
-     * @return the uom
-     */
-    public UnitOfMeasure getUom() {
-        return uom;
-    }
-
-    /**
-     * @param uom the uom to set
-     */
-    public void setUom(UnitOfMeasure uom) {
-        this.uom = uom;
-    }
-    
-    
 }
