@@ -1,8 +1,8 @@
 package com.stw.spring5_recipe_app.services;
 
+import com.stw.spring5_recipe_app.commands.RecipeCommand;
 import com.stw.spring5_recipe_app.domain.Recipe;
 import java.util.Set;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -12,4 +12,6 @@ import org.springframework.stereotype.Service;
 public interface RecipeService {
    Set<Recipe> getRecipes(); 
    Recipe getRecipeById(Long id);
+   
+   RecipeCommand saveRecipeCommand(RecipeCommand command);
 }
