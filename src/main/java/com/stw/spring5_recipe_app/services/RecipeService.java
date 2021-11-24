@@ -11,4 +11,5 @@ import org.springframework.stereotype.Service;
 
 public interface RecipeService {
    Set<Recipe> getRecipes(); 
+   Recipe getRecipeById(Long id);
 }

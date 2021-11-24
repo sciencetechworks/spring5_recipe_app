@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.stw.spring5_recipe_app.services;
 
 import com.stw.spring5_recipe_app.domain.Recipe;
 import com.stw.spring5_recipe_app.repositories.RecipeRepository;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,5 +30,15 @@ public class RecipeServiceImpl implements RecipeService{
         return recipeSet;
     }
     
+    @Override
+    public Recipe getRecipeById(Long id) {
+        log.debug("I'm in the service");
+        Optional<Recipe> recipeOptional= recipeRepository.findById(id);
+        
+        if (!recipeOptional.isPresent()){
+            throw new RuntimeException("Recipe not found");
+        }
+        return recipeOptional.get();
+    }
     
 }
