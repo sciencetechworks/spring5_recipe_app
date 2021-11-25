@@ -12,13 +12,16 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author Usuario
  */
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude={"recipe"})
 @NoArgsConstructor
 @Entity
