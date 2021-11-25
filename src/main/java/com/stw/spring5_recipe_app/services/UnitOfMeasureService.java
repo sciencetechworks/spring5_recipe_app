@@ -4,14 +4,13 @@
  */
 package com.stw.spring5_recipe_app.services;
 
-import com.stw.spring5_recipe_app.commands.IngredientCommand;
+import com.stw.spring5_recipe_app.commands.UnitOfMeasureCommand;
+import java.util.Set;
 
 /**
  *
  * @author Usuario
  */
-public interface IngredientService {
-    IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId);
-    
-     IngredientCommand saveIngredientCommand(IngredientCommand command);
+public interface UnitOfMeasureService {
+    Set<UnitOfMeasureCommand> listAllUoms();
 }
