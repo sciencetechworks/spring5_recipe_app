@@ -6,6 +6,7 @@ package com.stw.spring5_recipe_app.controllers;
 
 import com.stw.spring5_recipe_app.commands.RecipeCommand;
 import com.stw.spring5_recipe_app.domain.Recipe;
+import com.stw.spring5_recipe_app.exceptions.NotFoundException;
 import com.stw.spring5_recipe_app.services.RecipeService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -74,7 +75,15 @@ public class RecipeControllerTest {
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
     }
+    
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
 
+        when(recipeService.getRecipeById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
+    }
     @Test
     public void testGetNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();

@@ -3,8 +3,10 @@ package com.stw.spring5_recipe_app.services;
 import com.stw.spring5_recipe_app.converters.RecipeCommandToRecipe;
 import com.stw.spring5_recipe_app.converters.RecipeToRecipeCommand;
 import com.stw.spring5_recipe_app.domain.Recipe;
+import com.stw.spring5_recipe_app.exceptions.NotFoundException;
 import com.stw.spring5_recipe_app.repositories.RecipeRepository;
 import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,6 +57,21 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, never()).findAll();
     }
 
+    @Test //(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws NotFoundException {
+
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        
+
+        Exception thrown = Assertions.assertThrows(
+                NotFoundException.class,()->{
+                Recipe recipeReturned = recipeService.getRecipeById(1L);
+                });
+        //should go boom
+    }
     /*
     @Test
     public void getRecipeCommandByIdTest() throws Exception {
