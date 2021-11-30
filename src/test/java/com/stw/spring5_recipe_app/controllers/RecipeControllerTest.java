@@ -18,11 +18,13 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 /**
@@ -85,6 +87,18 @@ public class RecipeControllerTest {
                 .andExpect(status().isNotFound()).
                 andExpect(view().name("404error"));
     }
+    
+    @Test
+    public void testGetRecipeNumberFormatException() throws Exception {
+
+        //when(recipeService.getRecipeById(anyLong())).thenThrow(NumberFormatException.class);
+
+        mockMvc.perform(get("/recipe/asdf/show"))
+                .andExpect(status().isBadRequest()).
+                andExpect(view().name("400error"));
+    }
+    
+    
     @Test
     public void testGetNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
