@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sfg_dev
+    username: sfg_dev_user
+    password: guru
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
+#Activating the following properties will generate a file named 
+# guru_database_create.sql that should be used to CREATE the tables
+# in MYSQL as root user. Use MYSQL Workbench for that.
+# https://www.udemy.com/course/spring-framework-5-beginner-to-guru/learn/lecture/7705258
+#    properties:
+#      hibernate:
+#          hbm2ddl:
+#            delimiter: ";"
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: guru_database_create.sql
